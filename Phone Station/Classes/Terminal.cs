@@ -13,16 +13,22 @@ namespace Phone_Station.Classes
         public Port Port { get; private set; }
 
 
-        public Terminal(string phoneNumber, string phoneModel)
+        public Terminal(string phoneNumber, string phoneModel, Port port)
         {
-            PhoneNumber = phoneNumber;
+            PhoneNumber = "8029" + port.PortNumber;
             PhoneModel = phoneModel;
+            Port = port;
         }
 
-        public Terminal(string phoneNumber, Port port)
+        public Terminal(Port port)
         {
-            PhoneNumber = phoneNumber;
+            PhoneNumber = "8029" + port.PortNumber;
             Port = port;
+        }
+
+        public Terminal()
+        {
+
         }
 
         public bool Equals(Terminal other)

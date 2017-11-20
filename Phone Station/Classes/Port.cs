@@ -8,7 +8,7 @@ namespace Phone_Station.Classes
 {
     public class Port
     {
-        public PortCondition Condition { get; private set; }
+        public PortCondition Condition { get; set; }
         public string PortNumber { get; private set; }
 
         public Port(PortCondition condition, string portNumber)

@@ -8,6 +8,7 @@ namespace Phone_Station.Classes
 {
     public class Client
     {
+        public string Name { get; private set; }
         public Terminal Terminal { get; private set; }
         public Rate Rate { get; private set; }
 
@@ -17,5 +18,11 @@ namespace Phone_Station.Classes
             Rate = rate;
         }
 
+        public Client(Rate rate, Terminal terminal, string name)
+        {
+            Terminal = terminal;
+            Rate = rate;
+            Name = name;
+        }
     }
 }
