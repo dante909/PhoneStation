@@ -4,3 +4,6 @@ D:\Projects_epam\Phone Station\Phone Station\bin\Debug\Phone Station.pdb
 D:\Projects_epam\Phone Station\Phone Station\obj\Debug\Phone Station.csprojResolveAssemblyReference.cache
 D:\Projects_epam\Phone Station\Phone Station\obj\Debug\Phone Station.exe
 D:\Projects_epam\Phone Station\Phone Station\obj\Debug\Phone Station.pdb
+C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\bin\Debug\Phone Station.exe.config
+C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\obj\Debug\Phone Station.exe
+C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\obj\Debug\Phone Station.pdb
