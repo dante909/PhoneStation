@@ -9,21 +9,13 @@ namespace Phone_Station.Entities
 {
     public class Client
     {
-        public string Name { get; private set; }
-        public Terminal Terminal { get; private set; }
-        public Rate Rate { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
 
-        public Client(Rate rate, Terminal terminal)
+        public Client(string firstName, string lastName)
         {
-            Terminal = terminal;
-            Rate = rate;
-        }
-
-        public Client(Rate rate, Terminal terminal, string name)
-        {
-            Terminal = terminal;
-            Rate = rate;
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }

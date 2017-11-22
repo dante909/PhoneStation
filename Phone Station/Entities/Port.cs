@@ -11,7 +11,7 @@ namespace Phone_Station.Entities
     public class Port
     {
         public PortState State { get; set; }
-        private  Station station;
+        private  Station ats;
         public bool Flag { get; set; }
 
         public delegate void PortEventHandler(object sender, CallEventArgs e);
@@ -22,7 +22,7 @@ namespace Phone_Station.Entities
         public Port(Station station)
         {
             State = PortState.Disconnect;
-            this.station = station;
+            this.ats = station;
         }
         public Port()
         {
@@ -34,9 +34,9 @@ namespace Phone_Station.Entities
             if (State == PortState.Disconnect)
             {
                 State = PortState.Connect;
-                terminal.CallEvent += station.PhoneCall;
+                terminal.CallEvent += ats.PhoneCall;
                 IncomingCallEvent = terminal.TakeIncomingCall;
-                terminal.AnswerEvent += station.ToAnswer;
+                terminal.AnswerEvent += ats.ToAnswer;
                 PortAnswerEvent = terminal.TakeAnswer;
                 Flag = true;
             }
@@ -48,7 +48,7 @@ namespace Phone_Station.Entities
             if (State == PortState.Connect)
             {
                 State = PortState.Disconnect;
-                terminal.CallEvent -= station.PhoneCall;
+                terminal.CallEvent -= ats.PhoneCall;
                 IncomingCallEvent -= terminal.TakeIncomingCall;
                 Flag = false;
             }

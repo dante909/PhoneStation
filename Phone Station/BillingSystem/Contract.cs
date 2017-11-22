@@ -11,22 +11,18 @@ namespace Phone_Station.BillingSystem
 {
     public class Contract
     {
-        public string Name { get; private set; }
         public string PhoneNumber { get; private set; }
         public Tariff Tariff { get; set; }
+        public Client Client { get; set; }
         public Station Ats { get; set; }
 
-        public Contract(string name, string phoneNumber, States.Rate tariffType, Station ats)
+        public Contract(Client client, string phoneNumber, Rate tariffType, Station ats)
         {
-            Name = name;
+            Client = client;
             PhoneNumber = phoneNumber;
             Tariff = new Tariff(tariffType);
             Ats = ats;
         }
 
-        public Terminal RegisterContract()
-        {
-            return Ats.GetNewTerminal(PhoneNumber);
-        }
     }
 }

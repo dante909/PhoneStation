@@ -9,8 +9,8 @@ namespace Phone_Station.BillingSystem
 {
     public class Tariff
     {
-        public int CostOfMonth;
-        public int CostOfMinutes;
+        public int CostOfMonth { get; set; }
+        public int CostOfMinutes { get; set; }
         public Rate TariffType { get; private set; }
         public Tariff(Rate type)
         {

@@ -17,13 +17,13 @@ namespace Phone_Station
         static void Main(string[] args)
         {
             Station ats = new Station();
-
-            Contract c1 = new Contract("John", "23145", Rate.Absolute, ats);
-            Contract c2 = new Contract("Bob", "12423", Rate.Absolute, ats);
-            Contract c3 = new Contract("Rick", "235213", Rate.Absolute, ats);
-            var t1 = c1.RegisterContract();
-            var t2 = c2.RegisterContract();
-            var t3 = c3.RegisterContract();
+            
+            Contract c1 = new Contract(new Client("sffa", "asfaf"), "892341", Rate.Absolute, ats);
+            Contract c2 = new Contract(new Client("sfaf", "asfaf"), "892431", Rate.Ultra, ats);
+            Contract c3 = new Contract(new Client("sfaf", "asfaf"), "8923541", Rate.Absolute, ats);
+            var t1 = ats.GetNewTerminal(c1.PhoneNumber);
+            var t2 = ats.GetNewTerminal(c2.PhoneNumber);
+            var t3 = ats.GetNewTerminal(c3.PhoneNumber);
             t1.ConnectToPort();
             t2.ConnectToPort();
             t3.ConnectToPort();
