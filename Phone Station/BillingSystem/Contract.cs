@@ -14,14 +14,12 @@ namespace Phone_Station.BillingSystem
         public string PhoneNumber { get; private set; }
         public Tariff Tariff { get; set; }
         public Client Client { get; set; }
-        public Station Ats { get; set; }
 
-        public Contract(Client client, string phoneNumber, Rate tariffType, Station ats)
-        {
+        public Contract(Client client, string portNumber, Rate tariffType)
+        {         
             Client = client;
-            PhoneNumber = phoneNumber;
+            PhoneNumber = "8911" + portNumber;
             Tariff = new Tariff(tariffType);
-            Ats = ats;
         }
 
     }

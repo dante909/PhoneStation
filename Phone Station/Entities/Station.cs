@@ -23,12 +23,12 @@ namespace Phone_Station.Entities
             _listPhoneNumbers = new List<string>();
         }
 
-        public Terminal GetNewTerminal(string phoneNumber)
+        public Terminal GetNewTerminal(string portNumber)
         {
-            _listPhoneNumbers.Add(phoneNumber);
-            var newPort = new Port(this);
+            _listPhoneNumbers.Add(portNumber);
+            var newPort = new Port(this, portNumber);
             _listPorts.Add(newPort);
-            var newTerminal = new Terminal(phoneNumber, newPort);
+            var newTerminal = new Terminal(portNumber, newPort);
             return newTerminal;
         }
 
