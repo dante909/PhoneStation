@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Phone_Station.Classes
+namespace Phone_Station.States
 {
-    public enum Rate
+    public enum CallState
     {
-        Ultra,
-        Absolute
+        Answered,
+        Rejected
     }
 }

@@ -43,14 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Call.cs" />
-    <Compile Include="Classes\Client.cs" />
-    <Compile Include="Classes\Port.cs" />
-    <Compile Include="Classes\Station.cs" />
-    <Compile Include="Classes\Terminal.cs" />
-    <Compile Include="Conditions\PortCondition.cs" />
-    <Compile Include="Conditions\Rate.cs" />
-    <Compile Include="EventArgs\CallEventArgs.cs" />
+    <Compile Include="Args\AnswerEventArgs.cs" />
+    <Compile Include="BillingSystem\Contract.cs" />
+    <Compile Include="BillingSystem\Tariff.cs" />
+    <Compile Include="Entities\CallInfo.cs" />
+    <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\Port.cs" />
+    <Compile Include="Entities\Station.cs" />
+    <Compile Include="Entities\Terminal.cs" />
+    <Compile Include="States\CallState.cs" />
+    <Compile Include="States\PortState.cs" />
+    <Compile Include="States\Rate.cs" />
+    <Compile Include="Args\CallEventArgs.cs" />
     <Compile Include="Interfaces\IPort.cs" />
     <Compile Include="Interfaces\IRate.cs" />
     <Compile Include="Interfaces\ITerminal.cs" />
@@ -60,9 +64,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BillingSystem\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

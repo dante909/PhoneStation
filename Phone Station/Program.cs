@@ -3,42 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Phone_Station.States;
+using Phone_Station.Args;
+using Phone_Station.Entities;
+using Phone_Station.BillingSystem;
 
-namespace Phone_Station.Classes
+
+namespace Phone_Station
 {
     class Program
     {
-        static void Display(object sender, CallEventArgs e)
-        {
-            Console.WriteLine(e.Message);
-        }
-
-        static void Disconnect(object sender, CallEventArgs e)
-        {
-            Console.ReadKey();
-            Console.WriteLine(e.Message);
-        }
 
         static void Main(string[] args)
         {
-            Port port1 = new Port(PortCondition.Connected, "001");
-            Port port2 = new Port(PortCondition.Connected, "002");
+            Station ats = new Station();
 
-            Terminal t1 = new Terminal(port1);
-            Terminal t2 = new Terminal(port2);
-
-            List<Call> callCollection = new List<Call>();
-            List<Terminal> terminalCollection = new List<Terminal>();
-            terminalCollection.Add(t1);
-            terminalCollection.Add(t2);
-
-            Station station = new Station(terminalCollection);
-
-            station.Connecting += Display;
-            station.Connected += Display;
-            station.Disconnected += Disconnect;
-            station.PhoneCall(t2);
-
+            Contract c1 = new Contract("John", "23145", Rate.Absolute, ats);
+            Contract c2 = new Contract("Bob", "12423", Rate.Absolute, ats);
+            Contract c3 = new Contract("Rick", "235213", Rate.Absolute, ats);
+            var t1 = c1.RegisterContract();
+            var t2 = c2.RegisterContract();
+            var t3 = c3.RegisterContract();
+            t1.ConnectToPort();
+            t2.ConnectToPort();
+            t3.ConnectToPort();
+            t1.Call(t2.PhoneNumber);
+            t2.AnswerToCall(t1.PhoneNumber, CallState.Rejected);
+            t2.Call(t3.PhoneNumber);
+            t3.AnswerToCall(t2.PhoneNumber, CallState.Answered);
+            t2.Call(t2.PhoneNumber);
+            t2.Call("54532");
+            Console.ReadKey();
 
         }
     }

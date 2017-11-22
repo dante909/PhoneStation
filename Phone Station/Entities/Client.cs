@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Phone_Station.States;
 
-namespace Phone_Station.Classes
+namespace Phone_Station.Entities
 {
     public class Client
     {
