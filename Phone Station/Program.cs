@@ -33,7 +33,7 @@ namespace Phone_Station
             t2.ConnectToPort();
             t3.ConnectToPort();
             t1.Call(t2.PhoneNumber);
-           // t2.AnswerToCall(t1.PhoneNumber, CallState.Rejected);
+            // t2.AnswerToCall(t1.PhoneNumber, CallState.Rejected);
             t2.Call(t3.PhoneNumber);
             // t3.AnswerToCall(t2.PhoneNumber, CallState.Answered);
             // t2.Call(t2.PhoneNumber);

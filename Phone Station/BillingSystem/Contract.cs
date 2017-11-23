@@ -14,12 +14,24 @@ namespace Phone_Station.BillingSystem
         public string PhoneNumber { get; private set; }
         public Tariff Tariff { get; set; }
         public Client Client { get; set; }
+        private DateTime LastTariffUpdate;
 
         public Contract(Client client, string portNumber, Rate tariffType)
         {         
             Client = client;
             PhoneNumber = "8911" + portNumber;
             Tariff = new Tariff(tariffType);
+        }
+
+        public bool ChangeTariff(Rate tariffType)
+        {
+            if (DateTime.Now.AddMonths(-1) >= LastTariffUpdate)
+            {
+                LastTariffUpdate = DateTime.Now;
+                Tariff = new Tariff(tariffType);
+                return true;
+            }
+            return false;
         }
 
     }
