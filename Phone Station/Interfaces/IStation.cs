@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Phone_Station.Interfaces
 {
-    interface ITerminal
+    public interface IStation<T>
     {
+        IList<T> GetInfoList();
     }
 }

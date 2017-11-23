@@ -44,7 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Args\AnswerEventArgs.cs" />
+    <Compile Include="Args\EndEventArgs.cs" />
+    <Compile Include="BillingSystem\Billing.cs" />
     <Compile Include="BillingSystem\Contract.cs" />
+    <Compile Include="BillingSystem\Report.cs" />
+    <Compile Include="BillingSystem\DisplayInfo.cs" />
     <Compile Include="BillingSystem\Tariff.cs" />
     <Compile Include="Entities\CallInfo.cs" />
     <Compile Include="Entities\Client.cs" />
@@ -57,7 +61,7 @@
     <Compile Include="Args\CallEventArgs.cs" />
     <Compile Include="Interfaces\IPort.cs" />
     <Compile Include="Interfaces\IRate.cs" />
-    <Compile Include="Interfaces\ITerminal.cs" />
+    <Compile Include="Interfaces\IStation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

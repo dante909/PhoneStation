@@ -7,15 +7,17 @@ using System.Threading;
 using Phone_Station.States;
 using Phone_Station.Args;
 using Phone_Station.Entities;
+using Phone_Station.Interfaces;
 
 
 namespace Phone_Station.Entities
 {
-    public class Station
+    public class Station : IStation<CallInfo>
     {
 
         private IList<Port> _listPorts;
         private IList<string> _listPhoneNumbers;
+        private IList<CallInfo> _callList = new List<CallInfo>();
 
         public Station()
         {
@@ -54,14 +56,32 @@ namespace Phone_Station.Entities
 
         public void ToAnswer(object sender, AnswerEventArgs e)
         {
+            
             if (_listPhoneNumbers.Contains(e.PhoneNumber))
             {
+                CallInfo inf = null;
+                CallInfo call = new CallInfo();
+                System.Timers.Timer t = new System.Timers.Timer();
                 var index = _listPhoneNumbers.IndexOf(e.PhoneNumber);
                 if (_listPorts[index].State == PortState.Connect)
                 {
+                  
                     _listPorts[index].AnswerCall(e.TargetPhoneNumber, e.PhoneNumber, e.StateCall);
+                    t.Start();
+                    call.Start = DateTime.Now;
+                    Console.ReadKey();
+                    t.Stop();
+                    call.Duration = DateTime.Now - call.Start;
+                    inf = new CallInfo(call.Start, call.Duration);
+                    _callList.Add(inf);
+
                 }
             }
+        }
+
+        public IList<CallInfo> GetInfoList()
+        {
+            return _callList;
         }
     }
 }

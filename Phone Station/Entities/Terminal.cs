@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Phone_Station.Args;
 using Phone_Station.States;
+using Phone_Station.Interfaces;
 
 namespace Phone_Station.Entities
 {
@@ -13,17 +14,25 @@ namespace Phone_Station.Entities
     {
 
         public string PhoneNumber { get; set; }
+        private IList<CallInfo> _callList = new List<CallInfo>();
 
         private Port _terminalPort;
         public delegate void CallEventHandler(object sender, CallEventArgs e);
         public delegate void AnswerEventHandler(object sender, AnswerEventArgs e);
+       // public delegate CallInfo EndEventHandler(object sender, EndEventArgs e);
         public event CallEventHandler CallEvent;
         public event AnswerEventHandler AnswerEvent;
+       // public event EndEventHandler EndEvent;
 
         public Terminal(string phonenumber, Port port)
         {
             PhoneNumber = phonenumber;
             this._terminalPort = port;
+        }
+
+        public Terminal()
+        {
+
         }
 
         public void Call(string targetNumber)
@@ -34,7 +43,6 @@ namespace Phone_Station.Entities
 
         public void TakeIncomingCall(object sender, CallEventArgs e)
         {
-            //условие да нет AnswerTo
             bool flag = true;
             Console.WriteLine("Have incoming Call at number: {0} to terminal {1}", e.PhoneNumber, e.TargetPhoneNumber);
             while (flag == true)
@@ -51,7 +59,8 @@ namespace Phone_Station.Entities
                 {
                     flag = false;
                     Console.WriteLine();
-                    AnswerToCall(e.PhoneNumber, CallState.Rejected);
+                    //AnswerToCall(e.PhoneNumber, CallState.Rejected);
+                    break;
                 }
                 else
                 {
@@ -76,19 +85,22 @@ namespace Phone_Station.Entities
 
         public void TakeAnswer(object sender, AnswerEventArgs e)
         {
-            CallInfo call = new CallInfo();
-            System.Timers.Timer t = new System.Timers.Timer();
+               //CallInfo inf = null;
+               //CallInfo call = new CallInfo();
+               //System.Timers.Timer t = new System.Timers.Timer();
             if (e.StateCall == CallState.Answered)
             {
                 Console.WriteLine("Terminal with number: {0}, answered a call number: {1}", e.TargetPhoneNumber, e.PhoneNumber);
-                t.Start();
-                call.Start = DateTime.Now;
-                Console.ReadKey();
-                t.Stop();
-                call.Duration = DateTime.Now - call.Start;
-                Console.WriteLine("{0}, {1}", call.Start.ToString(), call.Duration.ToString());
+                //t.Start();
+                //call.Start = DateTime.Now;
+                //Console.ReadKey();
+                //t.Stop();
+                //call.Duration = DateTime.Now - call.Start;
+                //inf = new CallInfo(call.Start, call.Duration);
+                //_callList.Add(inf);
+                //Console.WriteLine(inf);
             }
-            else
+            else if(e.StateCall == CallState.Rejected)
             {
                 Console.WriteLine("Terminal with number: {0}, rejected a call number: {1}", e.TargetPhoneNumber, e.PhoneNumber);
             }
