@@ -10,3 +10,9 @@ C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\obj\Debug\Phone S
 C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\obj\Debug\Phone Station.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\bin\Debug\Phone Station.exe
 C:\Users\User\Desktop\Phone Station\PhoneStation\Phone Station\bin\Debug\Phone Station.pdb
+C:\Users\User\Desktop\git\PhoneStation\Phone Station\bin\Debug\Phone Station.exe.config
+C:\Users\User\Desktop\git\PhoneStation\Phone Station\obj\Debug\Phone Station.exe
+C:\Users\User\Desktop\git\PhoneStation\Phone Station\obj\Debug\Phone Station.pdb
+C:\Users\User\Desktop\git\PhoneStation\Phone Station\bin\Debug\Phone Station.exe
+C:\Users\User\Desktop\git\PhoneStation\Phone Station\bin\Debug\Phone Station.pdb
+C:\Users\User\Desktop\git\PhoneStation\Phone Station\obj\Debug\Phone Station.csprojResolveAssemblyReference.cache
