@@ -38,7 +38,7 @@ namespace Phone_Station.BillingSystem
                     number = call.MyPhoneNumber;                
                 }               
 
-                var record = new ReportRecord(call.Start, call.Duration, number, callType); 
+                var record = new ReportRecord(call.Start, call.Duration, number, callType, call.CostOfTalk); 
                 report.AddRecord(record);
             }
             return report;

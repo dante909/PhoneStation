@@ -8,6 +8,7 @@ using Phone_Station.States;
 using Phone_Station.Args;
 using Phone_Station.Entities;
 using Phone_Station.Interfaces;
+using Phone_Station.BillingSystem;
 
 
 namespace Phone_Station.Entities
@@ -18,19 +19,22 @@ namespace Phone_Station.Entities
         private IList<Port> _listPorts;
         private IList<string> _listPhoneNumbers;
         private IList<CallInfo> _callList = new List<CallInfo>();
+        private IList<Contract> _listContracts;
 
         public Station()
         {
             _listPorts = new List<Port>();
             _listPhoneNumbers = new List<string>();
+            _listContracts = new List<Contract>();
         }
 
-        public Terminal GetNewTerminal(string portNumber)
+        public Terminal GetNewTerminal(Contract contract)
         {
-            _listPhoneNumbers.Add(portNumber);
-            var newPort = new Port(this, portNumber);
+            _listPhoneNumbers.Add(contract.PhoneNumber);
+            var newPort = new Port(this, contract.PhoneNumber);
             _listPorts.Add(newPort);
-            var newTerminal = new Terminal(portNumber, newPort);
+            _listContracts.Add(contract);
+            var newTerminal = new Terminal(contract.PhoneNumber, newPort);
             return newTerminal;
         }
 
@@ -62,10 +66,9 @@ namespace Phone_Station.Entities
                 CallInfo info = null;
                 CallInfo call = new CallInfo();
                 System.Timers.Timer t = new System.Timers.Timer();
-                var index = _listPhoneNumbers.IndexOf(e.PhoneNumber);
+                int index = _listPhoneNumbers.IndexOf(e.PhoneNumber);
                 if (_listPorts[index].State == PortState.Connect && e.StateCall == CallState.Answered)
                 {
-                  
                     _listPorts[index].AnswerCall(e.TargetPhoneNumber, e.PhoneNumber, e.StateCall);
                     t.Start();
                     call.MyPhoneNumber = e.PhoneNumber;
@@ -74,7 +77,9 @@ namespace Phone_Station.Entities
                     Console.ReadKey();
                     t.Stop();
                     call.Duration = DateTime.Now - call.Start;
-                    info = new CallInfo(call.Start, call.Duration, call.MyPhoneNumber, call.TargetPhoneNumber);
+                    var costOfTalk = _listContracts[index].Tariff.CostOfMinutes * call.Duration.TotalSeconds; //TotalSeconds
+                    call.CostOfTalk = (int)costOfTalk;
+                    info = new CallInfo(call.Start, call.Duration, call.MyPhoneNumber, call.TargetPhoneNumber, call.CostOfTalk);
                     _callList.Add(info);
 
                 }

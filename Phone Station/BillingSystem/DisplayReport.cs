@@ -16,8 +16,8 @@ namespace Phone_Station.BillingSystem
         {
             foreach (var record in report.GetRecords())
             {
-                Console.WriteLine("Phone number: {0},  Begining of talk: {1}, Duration talk: {2}, Call type: {3}",
-                    record.PhoneNumber, record.Start.ToString(), record.Duration.ToString(), record.CallType.ToString());
+                Console.WriteLine("Number: {0}, Start of talk: {1}, Duration talk: {2}, Call type: {3}, Cost: {4}",
+                    record.PhoneNumber, record.Start.ToString(), record.Duration.ToString(), record.CallType.ToString(), record.CostOfTalk.ToString());
             }
         }
     }

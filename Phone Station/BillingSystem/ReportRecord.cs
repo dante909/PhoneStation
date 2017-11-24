@@ -13,13 +13,15 @@ namespace Phone_Station.BillingSystem
         public TimeSpan Duration { get; set; }
         public string PhoneNumber { get; set; }
         public CallType CallType { get; set; }
+        public int CostOfTalk { get; set; }
 
-        public ReportRecord(DateTime start, TimeSpan duration, string phoneNumber, CallType callType)
+        public ReportRecord(DateTime start, TimeSpan duration, string phoneNumber, CallType callType, int costOfTalk)
         {
             Start = start;
             Duration = duration;
             PhoneNumber = phoneNumber;
             CallType = callType;
+            CostOfTalk = costOfTalk;
         }
 
 
