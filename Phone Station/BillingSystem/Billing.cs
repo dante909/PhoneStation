@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Phone_Station.Interfaces;
 using Phone_Station.Entities;
+using Phone_Station.States;
 
 namespace Phone_Station.BillingSystem
 {
@@ -20,12 +21,24 @@ namespace Phone_Station.BillingSystem
         public Report GetReport(string phoneNumber)
         {
             var calls = _storage.GetInfoList().
-                Where(x => x.PhoneNumber == phoneNumber).ToList();
+                Where(x => x.MyPhoneNumber == phoneNumber || x.TargetPhoneNumber == phoneNumber).ToList();
             var report = new Report();
-
             foreach (var call in calls)
             {
-                var record = new CallInfo(call.Start, call.Duration, call.PhoneNumber); 
+                CallType callType;
+                string number;
+                if (call.MyPhoneNumber == phoneNumber)
+                {
+                    callType = CallType.Outcoming;
+                    number = call.TargetPhoneNumber;
+                }
+                else
+                {
+                    callType = CallType.Incoming;
+                    number = call.MyPhoneNumber;                
+                }               
+
+                var record = new ReportRecord(call.Start, call.Duration, number, callType); 
                 report.AddRecord(record);
             }
             return report;

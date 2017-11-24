@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Phone_Station.BillingSystem
 {
-    public class DisplayInfo
+    public class DisplayReport
     {
-        public DisplayInfo()
+        public DisplayReport()
         {
 
         }
@@ -16,7 +16,8 @@ namespace Phone_Station.BillingSystem
         {
             foreach (var record in report.GetRecords())
             {
-                Console.WriteLine(record);
+                Console.WriteLine("Phone number: {0},  Begining of talk: {1}, Duration talk: {2}, Call type: {3}",
+                    record.PhoneNumber, record.Start.ToString(), record.Duration.ToString(), record.CallType.ToString());
             }
         }
     }

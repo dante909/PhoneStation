@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Phone_Station.States
 {
-    public enum CallState
+    public enum CallType
     {
-        Answered,
-        Rejected
-        
+        Incoming,
+        Outcoming
     }
 }

@@ -10,13 +10,15 @@ namespace Phone_Station.Entities
     {
         public DateTime Start { get; set; }
         public TimeSpan Duration { get; set; }
-        public string PhoneNumber { get; set; }
+        public string MyPhoneNumber { get; set; }
+        public string TargetPhoneNumber { get; set; }
 
-        public CallInfo(DateTime start, TimeSpan duration, string phoneNumber)
+        public CallInfo(DateTime start, TimeSpan duration, string myPhoneNumber, string targetPhoneNumber)
         {
             Start = start;
             Duration = duration;
-            PhoneNumber = phoneNumber;
+            MyPhoneNumber = myPhoneNumber;
+            TargetPhoneNumber = targetPhoneNumber;
         }
 
             public CallInfo()
@@ -24,9 +26,9 @@ namespace Phone_Station.Entities
 
         }
 
-        public override string ToString()
-        {
-            return string.Format("Phone Number: {0}, Begin of talk: {1}, Duration: {2}", PhoneNumber, Start.ToString(), Duration.ToString());
-        }
+        //public override string ToString()
+        //{
+        //    return string.Format("Phone Number: {0}, Begin of talk: {1}, Duration: {2}", PhoneNumber, Start.ToString(), Duration.ToString());
+        //}
     }
 }

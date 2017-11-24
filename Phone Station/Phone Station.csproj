@@ -48,7 +48,8 @@
     <Compile Include="BillingSystem\Billing.cs" />
     <Compile Include="BillingSystem\Contract.cs" />
     <Compile Include="BillingSystem\Report.cs" />
-    <Compile Include="BillingSystem\DisplayInfo.cs" />
+    <Compile Include="BillingSystem\DisplayReport.cs" />
+    <Compile Include="BillingSystem\ReportRecord.cs" />
     <Compile Include="BillingSystem\Tariff.cs" />
     <Compile Include="Entities\CallInfo.cs" />
     <Compile Include="Entities\Client.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Entities\Station.cs" />
     <Compile Include="Entities\Terminal.cs" />
     <Compile Include="States\CallState.cs" />
+    <Compile Include="States\CallType.cs" />
     <Compile Include="States\PortState.cs" />
     <Compile Include="States\Rate.cs" />
     <Compile Include="Args\CallEventArgs.cs" />
