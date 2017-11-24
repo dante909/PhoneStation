@@ -59,8 +59,8 @@ namespace Phone_Station.Entities
                 {
                     flag = false;
                     Console.WriteLine();
-                    //AnswerToCall(e.PhoneNumber, CallState.Rejected);
-                    break;
+                    AnswerToCall(e.PhoneNumber, CallState.Rejected);
+                   // break;
                 }
                 else
                 {

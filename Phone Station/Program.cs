@@ -40,13 +40,8 @@ namespace Phone_Station
             // t2.Call("54532");
             Console.Write("List of records:");
             Console.WriteLine();
-            render.Display(bs.GetReport());
+            render.Display(bs.GetReport(t2.PhoneNumber));
             Console.WriteLine();
-
-            //foreach (var ls in ats.GetInfoList())
-            //{
-            //    Console.WriteLine(ls);
-            //}
 
         }
     }

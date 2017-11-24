@@ -17,14 +17,15 @@ namespace Phone_Station.BillingSystem
             _storage = storage;
         }
         //доделать по номеру
-        public Report GetReport()
+        public Report GetReport(string phoneNumber)
         {
-            var calls = _storage.GetInfoList().ToList();
+            var calls = _storage.GetInfoList().
+                Where(x => x.PhoneNumber == phoneNumber).ToList();
             var report = new Report();
 
             foreach (var call in calls)
             {
-                var record = new CallInfo(call.Start, call.Duration); 
+                var record = new CallInfo(call.Start, call.Duration, call.PhoneNumber); 
                 report.AddRecord(record);
             }
             return report;

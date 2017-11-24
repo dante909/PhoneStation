@@ -63,18 +63,24 @@ namespace Phone_Station.Entities
                 CallInfo call = new CallInfo();
                 System.Timers.Timer t = new System.Timers.Timer();
                 var index = _listPhoneNumbers.IndexOf(e.PhoneNumber);
-                if (_listPorts[index].State == PortState.Connect)
+                if (_listPorts[index].State == PortState.Connect && e.StateCall == CallState.Answered)
                 {
                   
                     _listPorts[index].AnswerCall(e.TargetPhoneNumber, e.PhoneNumber, e.StateCall);
                     t.Start();
+                    call.PhoneNumber = e.TargetPhoneNumber;
                     call.Start = DateTime.Now;
                     Console.ReadKey();
                     t.Stop();
                     call.Duration = DateTime.Now - call.Start;
-                    inf = new CallInfo(call.Start, call.Duration);
+                    inf = new CallInfo(call.Start, call.Duration, call.PhoneNumber);
                     _callList.Add(inf);
 
+                }
+
+                else
+                {
+                    _listPorts[index].AnswerCall(e.TargetPhoneNumber, e.PhoneNumber, e.StateCall);
                 }
             }
         }
