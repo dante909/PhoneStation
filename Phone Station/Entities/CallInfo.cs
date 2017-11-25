@@ -27,10 +27,5 @@ namespace Phone_Station.Entities
         {
 
         }
-
-        //public override string ToString()
-        //{
-        //    return string.Format("Phone Number: {0}, Begin of talk: {1}, Duration: {2}", PhoneNumber, Start.ToString(), Duration.ToString());
-        //}
     }
 }

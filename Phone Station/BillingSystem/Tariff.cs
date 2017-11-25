@@ -20,13 +20,13 @@ namespace Phone_Station.BillingSystem
                 case Rate.Absolute:
                     {
                         CostOfMonth = 10;
-                        CostOfMinutes = 3;
+                        CostOfMinutes = 5;
                         break;
                     }
                 case Rate.Ultra:
                     {
                         CostOfMonth = 20;
-                        CostOfMinutes = 4;
+                        CostOfMinutes = 10;
                         break;
                     }
                 default:

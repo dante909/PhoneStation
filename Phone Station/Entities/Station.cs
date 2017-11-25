@@ -67,6 +67,9 @@ namespace Phone_Station.Entities
                 CallInfo call = new CallInfo();
                 System.Timers.Timer t = new System.Timers.Timer();
                 int index = _listPhoneNumbers.IndexOf(e.PhoneNumber);
+                int indexContract = -1;
+                _listContracts.First(x => { indexContract++; return x.PhoneNumber == e.PhoneNumber; });
+                
                 if (_listPorts[index].State == PortState.Connect && e.StateCall == CallState.Answered)
                 {
                     _listPorts[index].AnswerCall(e.TargetPhoneNumber, e.PhoneNumber, e.StateCall);
@@ -77,7 +80,7 @@ namespace Phone_Station.Entities
                     Console.ReadKey();
                     t.Stop();
                     call.Duration = DateTime.Now - call.Start;
-                    var costOfTalk = _listContracts[index].Tariff.CostOfMinutes * call.Duration.TotalSeconds; //TotalSeconds
+                    var costOfTalk = _listContracts[indexContract].Tariff.CostOfMinutes * call.Duration.TotalSeconds; //TotalSeconds
                     call.CostOfTalk = (int)costOfTalk;
                     info = new CallInfo(call.Start, call.Duration, call.MyPhoneNumber, call.TargetPhoneNumber, call.CostOfTalk);
                     _callList.Add(info);

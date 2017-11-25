@@ -9,11 +9,10 @@ namespace Phone_Station.Args
 {
     public class EndEventArgs : EventArgs
     {
-        public CallInfo CallInfo { get; set; }
-
-        public EndEventArgs(CallInfo callInfo)
+        public string Message { get; set; }
+        public EndEventArgs(string message)
         {
-            CallInfo = callInfo;
+            Message = message;
         }
     }
 }

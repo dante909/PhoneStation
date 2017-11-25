@@ -9,19 +9,19 @@ namespace Phone_Station.BillingSystem
 {
     public class Report
     {
-        private IList<ReportRecord> _listRecords;
+        private IList<Record> _listRecords;
 
         public Report()
         {
-            _listRecords = new List<ReportRecord>();
+            _listRecords = new List<Record>();
         }
 
-        public void AddRecord(ReportRecord record)
+        public void AddRecord(Record record)
         {
             _listRecords.Add(record);
         }
 
-        public IList<ReportRecord> GetRecords()
+        public IList<Record> GetRecords()
         {
             return _listRecords;
         }

@@ -17,7 +17,7 @@ namespace Phone_Station.BillingSystem
         {
             _storage = storage;
         }
-        //доделать по номеру
+
         public Report GetReport(string phoneNumber)
         {
             var calls = _storage.GetInfoList().
@@ -38,7 +38,7 @@ namespace Phone_Station.BillingSystem
                     number = call.MyPhoneNumber;                
                 }               
 
-                var record = new ReportRecord(call.Start, call.Duration, number, callType, call.CostOfTalk); 
+                var record = new Record(call.Start, call.Duration, number, callType, call.CostOfTalk); 
                 report.AddRecord(record);
             }
             return report;

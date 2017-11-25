@@ -21,7 +21,7 @@ namespace Phone_Station
             port.Add(new Port(ats, "0002"));
             port.Add(new Port(ats, "0003"));
 
-            DisplayReport render = new DisplayReport();
+            DisplayReport report = new DisplayReport();
             Billing bs = new Billing(ats);
             Contract c1 = new Contract(new Client("Stieve", "Stieve"), port[0].PortNumber, Rate.Absolute);
             Contract c2 = new Contract(new Client("Bob", "Bob"), port[1].PortNumber, Rate.Ultra);
@@ -33,15 +33,14 @@ namespace Phone_Station
             t2.ConnectToPort();
             t3.ConnectToPort();
             t1.Call(t2.PhoneNumber);
-            // t2.AnswerToCall(t1.PhoneNumber, CallState.Rejected);
             t2.Call(t3.PhoneNumber);
-            // t3.AnswerToCall(t2.PhoneNumber, CallState.Answered);
-            // t2.Call(t2.PhoneNumber);
-            // t2.Call("54532");
-            Console.Write($"List of records of the abonent: {t2.PhoneNumber}");
+            t2.Call(t2.PhoneNumber);
+            t2.Call("54532");
+            Console.Write($"\nList of records of the abonent: {t2.PhoneNumber}");
             Console.WriteLine();
-            render.Display(bs.GetReport(t2.PhoneNumber));
-            Console.WriteLine();
+            report.Display(bs.GetReport(t2.PhoneNumber));
+            report.SortByCost(bs.GetReport(t2.PhoneNumber));
+            report.DisplaySortedCall(report.SortByCost(bs.GetReport(t2.PhoneNumber)));
 
         }
     }

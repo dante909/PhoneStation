@@ -19,10 +19,8 @@ namespace Phone_Station.Entities
         private Port _terminalPort;
         public delegate void CallEventHandler(object sender, CallEventArgs e);
         public delegate void AnswerEventHandler(object sender, AnswerEventArgs e);
-       // public delegate CallInfo EndEventHandler(object sender, EndEventArgs e);
         public event CallEventHandler CallEvent;
         public event AnswerEventHandler AnswerEvent;
-       // public event EndEventHandler EndEvent;
 
         public Terminal(string phonenumber, Port port)
         {
@@ -85,20 +83,9 @@ namespace Phone_Station.Entities
 
         public void TakeAnswer(object sender, AnswerEventArgs e)
         {
-               //CallInfo inf = null;
-               //CallInfo call = new CallInfo();
-               //System.Timers.Timer t = new System.Timers.Timer();
             if (e.StateCall == CallState.Answered)
             {
                 Console.WriteLine("Terminal with number: {0}, answered a call number: {1}", e.TargetPhoneNumber, e.PhoneNumber);
-                //t.Start();
-                //call.Start = DateTime.Now;
-                //Console.ReadKey();
-                //t.Stop();
-                //call.Duration = DateTime.Now - call.Start;
-                //inf = new CallInfo(call.Start, call.Duration);
-                //_callList.Add(inf);
-                //Console.WriteLine(inf);
             }
             else if(e.StateCall == CallState.Rejected)
             {
