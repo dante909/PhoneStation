@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Phone_Station.BillingSystem;
+using Phone_Station.States;
 
 namespace Phone_Station.Interfaces
 {
-    public interface ISort<T,M>
+    public interface ISort<T, M>
     {
-        IList<T> SortByDateOfCall(M inst);
-        IList<T> SortByCost(M inst);
-        IList<T> SortByNumber(M inst);
+        IList<T> Sort(M inst, TypeOfSorting type);
     }
 }

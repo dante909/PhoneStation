@@ -39,8 +39,8 @@ namespace Phone_Station
             Console.Write($"\nList of records of the abonent: {t2.PhoneNumber}");
             Console.WriteLine();
             report.Display(bs.GetReport(t2.PhoneNumber));
-            report.SortByCost(bs.GetReport(t2.PhoneNumber));
-            report.DisplaySortedCall(report.SortByCost(bs.GetReport(t2.PhoneNumber)));
+            report.Sort(bs.GetReport(t2.PhoneNumber), TypeOfSorting.ByCostOfTalk);
+            report.DisplaySortedCall(report.Sort(bs.GetReport(t2.PhoneNumber), TypeOfSorting.ByCostOfTalk));
 
         }
     }

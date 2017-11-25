@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Phone_Station.Interfaces;
+using Phone_Station.States;
 
 namespace Phone_Station.BillingSystem
 {
@@ -45,29 +46,49 @@ namespace Phone_Station.BillingSystem
             }
         }
 
-        public IList<Record> SortByCost(Report report)
+        public IList<Record>Sort(Report report, TypeOfSorting type)
         {
-            var reports = report.GetRecords();
-            return reports = reports
+            var records = report.GetRecords();
+            if (type == TypeOfSorting.ByCostOfTalk)
+                return records = records
                 .OrderBy(x => x.CostOfTalk)
                 .ToList();
-                
+            else if (type == TypeOfSorting.ByDate)
+                return records = records
+                    .OrderBy(x => x.Start)
+                    .ToList();
+            else if (type == TypeOfSorting.ByPhoneNumber)
+                return records = records
+                    .OrderBy(x => x.PhoneNumber)
+                    .ToList();
+            else
+                return records;
+
         }
 
-        public IList<Record> SortByDateOfCall(Report report)
-        {
-            var reports = report.GetRecords();
-            return reports = reports
-                .OrderBy(x => x.Start)
-                .ToList();
-        }
+        //public IList<Record> SortByCost(Report report)
+        //{
+        //    var reports = report.GetRecords();
+        //    return reports = reports
+        //        .OrderBy(x => x.CostOfTalk)
+        //        .ToList();
 
-        public IList<Record> SortByNumber(Report report)
-        {
-            var reports = report.GetRecords();
-            return reports = reports
-                .OrderBy(x => x.PhoneNumber)
-                .ToList();
-        }
+        //}
+
+        //public IList<Record> SortByDateOfCall(Report report)
+        //{
+        //    var reports = report.GetRecords();
+        //    return reports = reports
+        //        .OrderBy(x => x.Start)
+        //        .ToList();
+        //}
+
+        //public IList<Record> SortByNumber(Report report)
+        //{
+        //    var reports = report.GetRecords();
+        //    return reports = reports
+        //        .OrderBy(x => x.PhoneNumber)
+        //        .ToList();
+        //}
     }
 }

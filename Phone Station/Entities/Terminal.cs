@@ -86,6 +86,8 @@ namespace Phone_Station.Entities
             if (e.StateCall == CallState.Answered)
             {
                 Console.WriteLine("Terminal with number: {0}, answered a call number: {1}", e.TargetPhoneNumber, e.PhoneNumber);
+                //endevent
+
             }
             else if(e.StateCall == CallState.Rejected)
             {
