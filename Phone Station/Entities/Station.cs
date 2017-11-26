@@ -80,8 +80,9 @@ namespace Phone_Station.Entities
                     Console.ReadKey();
                     t.Stop();
                     call.Duration = DateTime.Now - call.Start;
-                    var costOfTalk = _listContracts[indexContract].Tariff.CostOfMinutes * call.Duration.TotalSeconds; //TotalSeconds
+                    var costOfTalk = _listContracts[indexContract].Tariff.CostOfMinutes * call.Duration.TotalMinutes; //TotalSeconds
                     call.CostOfTalk = (int)costOfTalk;
+                    _listContracts[indexContract].Client.RemoveMoney(call.CostOfTalk);
                     info = new CallInfo(call.Start, call.Duration, call.MyPhoneNumber, call.TargetPhoneNumber, call.CostOfTalk);
                     _callList.Add(info);
 

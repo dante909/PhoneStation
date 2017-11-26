@@ -14,13 +14,10 @@ namespace Phone_Station.Entities
     {
 
         public string PhoneNumber { get; set; }
-        private IList<CallInfo> _callList = new List<CallInfo>();
-
         private Port _terminalPort;
-        public delegate void CallEventHandler(object sender, CallEventArgs e);
-        public delegate void AnswerEventHandler(object sender, AnswerEventArgs e);
-        public event CallEventHandler CallEvent;
-        public event AnswerEventHandler AnswerEvent;
+        public event EventHandler<CallEventArgs> CallEvent;
+        public event EventHandler<AnswerEventArgs> AnswerEvent;
+       // public event EventHandler<EndEventArgs> EndCallEvent;
 
         public Terminal(string phonenumber, Port port)
         {
@@ -35,8 +32,7 @@ namespace Phone_Station.Entities
 
         public void Call(string targetNumber)
         {
-            if (CallEvent != null)
-                CallEvent(this, new CallEventArgs(PhoneNumber, targetNumber));
+            CallEvent?.Invoke(this, new CallEventArgs(PhoneNumber, targetNumber));
         }
 
         public void TakeIncomingCall(object sender, CallEventArgs e)
@@ -58,7 +54,6 @@ namespace Phone_Station.Entities
                     flag = false;
                     Console.WriteLine();
                     AnswerToCall(e.PhoneNumber, CallState.Rejected);
-                   // break;
                 }
                 else
                 {
@@ -75,20 +70,17 @@ namespace Phone_Station.Entities
 
         public void AnswerToCall(string incoming, CallState state)
         {
-            if (AnswerEvent != null)
-            {
-                AnswerEvent(this, new AnswerEventArgs(incoming, PhoneNumber, state));
-            }
+            AnswerEvent?.Invoke(this, new AnswerEventArgs(incoming, PhoneNumber, state));
         }
 
         public void TakeAnswer(object sender, AnswerEventArgs e)
         {
             if (e.StateCall == CallState.Answered)
             {
-                Console.WriteLine("Terminal with number: {0}, answered a call number: {1}", e.TargetPhoneNumber, e.PhoneNumber);
-                //endevent
-
+                Console.WriteLine("Terminal with number: {0}, answered a call number: {1}",
+                    e.TargetPhoneNumber, e.PhoneNumber);
             }
+
             else if(e.StateCall == CallState.Rejected)
             {
                 Console.WriteLine("Terminal with number: {0}, rejected a call number: {1}", e.TargetPhoneNumber, e.PhoneNumber);

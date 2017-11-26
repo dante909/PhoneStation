@@ -15,10 +15,8 @@ namespace Phone_Station.Entities
         public bool Flag { get; set; }
         public string PortNumber { get; set; }
 
-        public delegate void PortEventHandler(object sender, CallEventArgs e);
-        public delegate void PortAnswerEventHandler(object sender, AnswerEventArgs e);
-        public event PortEventHandler IncomingCallEvent;
-        public event PortAnswerEventHandler PortAnswerEvent;
+        public event EventHandler<CallEventArgs> IncomingCallEvent;
+        public event EventHandler<AnswerEventArgs> PortAnswerEvent;
 
         public Port(Station station, string portNumber)
         {
@@ -36,6 +34,7 @@ namespace Phone_Station.Entities
                 IncomingCallEvent = terminal.TakeIncomingCall;
                 terminal.AnswerEvent += station.ToAnswer;
                 PortAnswerEvent = terminal.TakeAnswer;
+                //terminal.EndCallEvent += station.ToAnswer;
                 Flag = true;
             }
             return Flag;
@@ -48,6 +47,7 @@ namespace Phone_Station.Entities
                 State = PortState.Disconnect;
                 terminal.CallEvent -= station.PhoneCall;
                 IncomingCallEvent -= terminal.TakeIncomingCall;
+                //terminal.EndCallEvent -= station.ToAnswer;
                 Flag = false;
             }
             return false;
@@ -55,18 +55,12 @@ namespace Phone_Station.Entities
 
         public void IncomingCall(string number, string incomingNumber)
         {
-            if (IncomingCallEvent != null)
-            {
-                IncomingCallEvent(this, new CallEventArgs(number, incomingNumber));
-            }
+            IncomingCallEvent?.Invoke(this, new CallEventArgs(number, incomingNumber));
         }
 
         public void AnswerCall(string number, string outcomingNumber, CallState state)
         {
-            if (PortAnswerEvent != null)
-            {
-                PortAnswerEvent(this, new AnswerEventArgs(outcomingNumber, number, state));
-            }
+            PortAnswerEvent?.Invoke(this, new AnswerEventArgs(outcomingNumber, number, state));
         }
 
     }
