@@ -23,6 +23,8 @@ namespace Phone_Station
         static void Main(string[] args)
         { 
             Station ats = new Station();
+            DisplayReport report = new DisplayReport();
+            Billing bs = new Billing(ats);
             List<Port> port = new List<Port>();
             port.Add(new Port(ats, "0001"));
             port.Add(new Port(ats, "0002"));
@@ -35,12 +37,11 @@ namespace Phone_Station
             client2.PropertyChanged += OnBalacneChanged;
             client3.PropertyChanged += OnBalacneChanged;
 
-            DisplayReport report = new DisplayReport();
-            Billing bs = new Billing(ats);
             Contract c1 = new Contract(client1, port[0].PortNumber, Rate.Absolute);
             Contract c2 = new Contract(client2, port[1].PortNumber, Rate.Ultra);
             Contract c3 = new Contract(client3, port[2].PortNumber, Rate.Absolute);
-            //c1.Client.AddMoney(20);
+            c1.Client.AddMoney(20);
+            c1.Client.RemoveMoney(15);
             var t1 = ats.GetNewTerminal(c1);
             var t2 = ats.GetNewTerminal(c2);
             var t3 = ats.GetNewTerminal(c3);
@@ -51,13 +52,11 @@ namespace Phone_Station
             t2.Call(t3.PhoneNumber);
             t2.Call(t2.PhoneNumber);
             t2.Call("54532");
-            Console.Write($"\nList of records of the abonent: {t2.PhoneNumber}");
+            Console.Write($"\nList of records of the abonent with number: {t2.PhoneNumber}");
             Console.WriteLine();
             report.Display(bs.GetReport(t2.PhoneNumber));
             report.Sort(bs.GetReport(t2.PhoneNumber), TypeOfSorting.ByCostOfTalk);
             report.DisplaySortedCall(report.Sort(bs.GetReport(t2.PhoneNumber), TypeOfSorting.ByCostOfTalk));
-            //c1.Client.ShowBalance();
-
         }
     }
 }

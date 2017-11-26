@@ -65,30 +65,5 @@ namespace Phone_Station.BillingSystem
                 return records;
 
         }
-
-        //public IList<Record> SortByCost(Report report)
-        //{
-        //    var reports = report.GetRecords();
-        //    return reports = reports
-        //        .OrderBy(x => x.CostOfTalk)
-        //        .ToList();
-
-        //}
-
-        //public IList<Record> SortByDateOfCall(Report report)
-        //{
-        //    var reports = report.GetRecords();
-        //    return reports = reports
-        //        .OrderBy(x => x.Start)
-        //        .ToList();
-        //}
-
-        //public IList<Record> SortByNumber(Report report)
-        //{
-        //    var reports = report.GetRecords();
-        //    return reports = reports
-        //        .OrderBy(x => x.PhoneNumber)
-        //        .ToList();
-        //}
     }
 }

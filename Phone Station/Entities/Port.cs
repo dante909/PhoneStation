@@ -15,7 +15,7 @@ namespace Phone_Station.Entities
         public bool Flag { get; set; }
         public string PortNumber { get; set; }
 
-        public event EventHandler<CallEventArgs> IncomingCallEvent;
+        public event EventHandler<CallEventArgs> PortCallEvent;
         public event EventHandler<AnswerEventArgs> PortAnswerEvent;
 
         public Port(Station station, string portNumber)
@@ -31,10 +31,9 @@ namespace Phone_Station.Entities
             {
                 State = PortState.Connect;
                 terminal.CallEvent += station.PhoneCall;
-                IncomingCallEvent = terminal.TakeIncomingCall;
-                terminal.AnswerEvent += station.ToAnswer;
+                PortCallEvent = terminal.TakeIncomingCall;
+                terminal.AnswerEvent += station.PhoneAnswer;
                 PortAnswerEvent = terminal.TakeAnswer;
-                //terminal.EndCallEvent += station.ToAnswer;
                 Flag = true;
             }
             return Flag;
@@ -46,8 +45,7 @@ namespace Phone_Station.Entities
             {
                 State = PortState.Disconnect;
                 terminal.CallEvent -= station.PhoneCall;
-                IncomingCallEvent -= terminal.TakeIncomingCall;
-                //terminal.EndCallEvent -= station.ToAnswer;
+                PortCallEvent -= terminal.TakeIncomingCall;
                 Flag = false;
             }
             return false;
@@ -55,7 +53,7 @@ namespace Phone_Station.Entities
 
         public void IncomingCall(string number, string incomingNumber)
         {
-            IncomingCallEvent?.Invoke(this, new CallEventArgs(number, incomingNumber));
+            PortCallEvent?.Invoke(this, new CallEventArgs(number, incomingNumber));
         }
 
         public void AnswerCall(string number, string outcomingNumber, CallState state)

@@ -13,11 +13,10 @@ namespace Phone_Station.Entities
     public class Terminal
     {
 
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; private set; }
         private Port _terminalPort;
         public event EventHandler<CallEventArgs> CallEvent;
         public event EventHandler<AnswerEventArgs> AnswerEvent;
-       // public event EventHandler<EndEventArgs> EndCallEvent;
 
         public Terminal(string phonenumber, Port port)
         {

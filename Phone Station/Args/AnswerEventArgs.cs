@@ -13,8 +13,6 @@ namespace Phone_Station.Args
         public string PhoneNumber { get; set; }
         public string TargetPhoneNumber { get; set; }
         public CallState StateCall { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
 
         public AnswerEventArgs(string phoneNumber, string targetNumber, CallState state)
         {

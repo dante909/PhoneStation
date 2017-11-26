@@ -19,7 +19,7 @@ namespace Phone_Station.BillingSystem
         public Contract(Client client, string portNumber, Rate tariffType)
         {         
             Client = client;
-            PhoneNumber = "8029" + portNumber;
+            PhoneNumber = "8029" + portNumber; //номер атс + номер порта
             Tariff = new Tariff(tariffType);
         }
 

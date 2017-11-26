@@ -54,13 +54,12 @@ namespace Phone_Station.Entities
             }
             else
             {
-                Console.WriteLine("You have calling a your number!");
+                Console.WriteLine("You call your number!");
             }
         }
 
-        public void ToAnswer(object sender, AnswerEventArgs e)
-        {
-            
+        public void PhoneAnswer(object sender, AnswerEventArgs e)
+        {            
             if (_listPhoneNumbers.Contains(e.PhoneNumber))
             {
                 CallInfo info = null;
@@ -80,14 +79,14 @@ namespace Phone_Station.Entities
                     Console.ReadKey();
                     t.Stop();
                     call.Duration = DateTime.Now - call.Start;
-                    var costOfTalk = _listContracts[indexContract].Tariff.CostOfMinutes * call.Duration.TotalMinutes; //TotalSeconds
+                    var costOfTalk = _listContracts[indexContract].Tariff.CostOfMinutes *
+                        call.Duration.TotalMinutes; //TotalSeconds
                     call.CostOfTalk = (int)costOfTalk;
                     _listContracts[indexContract].Client.RemoveMoney(call.CostOfTalk);
-                    info = new CallInfo(call.Start, call.Duration, call.MyPhoneNumber, call.TargetPhoneNumber, call.CostOfTalk);
+                    info = new CallInfo(call.Start, call.Duration, call.MyPhoneNumber, 
+                        call.TargetPhoneNumber, call.CostOfTalk);
                     _callList.Add(info);
-
                 }
-
                 else
                 {
                     _listPorts[index].AnswerCall(e.TargetPhoneNumber, e.PhoneNumber, e.StateCall);
