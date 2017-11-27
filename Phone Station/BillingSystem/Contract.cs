@@ -14,6 +14,7 @@ namespace Phone_Station.BillingSystem
         public string PhoneNumber { get; private set; }
         public Tariff Tariff { get; set; }
         public Client Client { get; set; }
+        public Port port;
         private DateTime LastTariffUpdate;
 
         public Contract(Client client, string portNumber, Rate tariffType)

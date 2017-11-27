@@ -28,13 +28,12 @@ namespace Phone_Station.Entities
             _listContracts = new List<Contract>();
         }
 
-        public Terminal GetNewTerminal(Contract contract)
+        public Terminal GetNewTerminal(Contract contract, Port port)
         {
             _listPhoneNumbers.Add(contract.PhoneNumber);
-            var newPort = new Port(this, contract.PhoneNumber);
-            _listPorts.Add(newPort);
+            _listPorts.Add(port);
             _listContracts.Add(contract);
-            var newTerminal = new Terminal(contract.PhoneNumber, newPort);
+            var newTerminal = new Terminal(contract.PhoneNumber, port);
             return newTerminal;
         }
 

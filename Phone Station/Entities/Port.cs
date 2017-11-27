@@ -25,6 +25,11 @@ namespace Phone_Station.Entities
             this.station = station;
         }
 
+        public Port()
+        {
+
+        }
+
         public bool Connect(Terminal terminal)
         {
             if (State == PortState.Disconnect)

@@ -33,7 +33,7 @@ namespace Phone_Station.Entities
                 if (value != _balance && value > 0)
                 {
                     _balance = value;
-                    NotifyPropertyChanged("Balance");
+                    NotifyPropertyChanged();
                 }
                                     
             }

@@ -42,9 +42,9 @@ namespace Phone_Station
             Contract c3 = new Contract(client3, port[2].PortNumber, Rate.Absolute);
             c1.Client.AddMoney(20);
             c1.Client.RemoveMoney(15);
-            var t1 = ats.GetNewTerminal(c1);
-            var t2 = ats.GetNewTerminal(c2);
-            var t3 = ats.GetNewTerminal(c3);
+            var t1 = ats.GetNewTerminal(c1, port[0]);
+            var t2 = ats.GetNewTerminal(c2, port[1]);
+            var t3 = ats.GetNewTerminal(c3, port[2]);
             t1.ConnectToPort();
             t2.ConnectToPort();
             t3.ConnectToPort();
